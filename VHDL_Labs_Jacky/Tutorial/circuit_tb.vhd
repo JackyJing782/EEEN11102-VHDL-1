@@ -11,9 +11,9 @@ architecture bench of circuit_tb is
   -- constant clk_period : time := 5 ns;
   -- Generics
   -- Ports
-  signal a      : std_logic;
-  signal b      : std_logic;
-  signal enable : std_logic;
+  signal a      : std_logic := '0';
+  signal b      : std_logic := '0';
+  signal enable : std_logic := '0';
   signal y      : std_logic;
 begin
 
@@ -26,11 +26,8 @@ begin
       y      => y
     );
   -- clk <= not clk after clk_period/2;
-  process
-  begin
-    a <= '0', '1' after 20 ns;
-    b <= '0', '1' after 40 ns;
-    enable <= '0', '1' after 60 ns, '0' after 80 ns;
-    wait for 100 ns;
-  end process;
+
+  a <= not a after 10 ns;
+  b <= not b after 20 ns;
+  enable <= not enable after 40 ns;
 end;
